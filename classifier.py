@@ -5,17 +5,6 @@ def classifier():
     import random
     from collections import defaultdict
     from janome.tokenizer import Tokenizer
-
-    # --------------------------------------------------
-    # ここにsqlからの処理を書きたい
-    # 別ファイルにしても大丈夫か？
-    # 1.記事のテーブルにrandom列を追加して乱数を発生
-    # 2.基準以上の乱数はテストデータ
-    # 3.基準以下の乱数は訓練データ
-    # 4.訓練データをfetchoneしてtrainにかける
-    # 5.テストデータをfetchoneしてclassifyにかけて正誤判定
-    # -------------------------------------------------
-
     import mysql.connector
     import config
 
@@ -103,6 +92,8 @@ def classifier():
         else:
             print("Correct: "+record[0]+"  Error: "+classify_result+"\n"+str(makekeywords.makekeywords(record[1])))
         record = cur.fetchone()
+    print("Training data: "+str(traindata_num))
+    print("Test data: "+str(test_num))
     print("Correct Classification Percentage: "+str(1.0*correct_num/test_num*100))
 
     cur.execute("""ALTER TABLE news DROP COLUMN random""")

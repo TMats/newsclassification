@@ -3,6 +3,7 @@ import readxml
 import readcontent
 import classifier
 
+# NHKニュースのRSSを利用
 readxml.readxml('http://www3.nhk.or.jp/rss/news/cat1.xml', 'social')
 readxml.readxml('http://www3.nhk.or.jp/rss/news/cat3.xml', 'science')
 readxml.readxml('http://www3.nhk.or.jp/rss/news/cat4.xml', 'politics')

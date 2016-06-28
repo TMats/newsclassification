@@ -14,7 +14,8 @@ def readxml(URL, cat):
         passwd=config.passwd,
         buffered=True)
     cur = con.cursor()
-   
+    cur.execute("""CREATE TABLE IF NOT EXISTS newsclassification.news(id int(11), pubdate datetime, url varchar(255), category text, content mediumtext)""")
+
     # scraping
     f = urlopen(URL)
     soup_xml = BeautifulSoup(f, "html.parser")
